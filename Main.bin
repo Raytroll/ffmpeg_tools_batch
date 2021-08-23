@@ -1,0 +1,36 @@
+::[version de patch] = V1.1
+@echo off
+title Launcher
+:debut
+if exist musiques-downloader.bat (echo 1:Musiques-downloader)
+
+if not exist musiques-downloader.bat (
+powershell -command "Write-Host "1:Musiques-downloader" -ForegroundColor DarkGray")
+
+if exist ./Tools/Main.bat (echo 2:Tools = video/audio edit)
+
+if not exist ./Tools/Main.bat (
+powershell -command "Write-Host "2:Tools = video/audio edit" -ForegroundColor DarkGray")
+
+if exist ./Extras/Launcher.bat (echo 3:Extras = Launcher-Batch)
+
+if not exist ./Extras/Launcher.bat (
+powershell -command "Write-Host "3:Extras = Launcher-Batch" -ForegroundColor DarkGray")
+
+echo 4:Exit
+set /p choix=Faites un choix:
+if exist musiques-downloader.bat (if %choix%==1 (cls
+start musiques-downloader.bat
+exit))
+if exist ./Tools/Main.bat (if %choix%==2 (cls
+cd "./Tools/"
+start Main.bat
+exit))
+if exist ./Extras/Launcher.bat (if %choix%==3 (cls
+cd ./Extras/
+start Launcher.bat
+exit))
+if %choix%==4 (cls
+exit)
+cls
+goto:debut 
